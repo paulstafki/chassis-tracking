@@ -14,8 +14,8 @@ class CreateUser extends Command
      * @var string
      */
     protected $signature = 'app:create-user
-                                {name : The username of the user}
-                                {email : The email of the user}
+                                {name : The username}
+                                {email : The email}
                                 {password : Password in plain text (will be encrypted automatically)}
                                 {--unverified : Keep the user unverified. Otherwise, email verified will be set at current time.}';
 
@@ -24,7 +24,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $description = 'Create a user to access the admin panel';
+    protected $description = 'Create user to access the admin panel';
 
     private array $rules = [
         'name' => ['required', 'min:4', 'unique:users,name'],
