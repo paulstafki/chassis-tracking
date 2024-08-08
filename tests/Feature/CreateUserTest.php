@@ -14,8 +14,8 @@ class CreateUserTest extends TestCase
     public function test_user_creates_with_valid_args(): void
     {
         $this->artisan('app:create-user', [
-            'name' => 'ajaxray',
-            'email' => 'user@ajaxray.com',
+            'name' => 'pablo',
+            'email' => 'user@pablo.com',
             'password' => '12345678',
         ])->expectsOutputToContain('User created');
 
@@ -25,7 +25,7 @@ class CreateUserTest extends TestCase
     public function test_cannot_create_user_with_invalid_email(): void
     {
         $this->artisan('app:create-user', [
-            'name' => 'ajaxray',
+            'name' => 'pablo',
             'email' => 'user@.com',
             'password' => '222222',
         ])->assertFailed()
@@ -37,14 +37,14 @@ class CreateUserTest extends TestCase
     public function test_cannot_create_user_with_duplicate_name(): void
     {
         $this->artisan('app:create-user', [
-            'name' => 'ajaxray',
-            'email' => 'user1@ajaxray.com',
+            'name' => 'pablo',
+            'email' => 'user1@pablo.com',
             'password' => '111111',
         ])->assertSuccessful();
 
         $this->artisan('app:create-user', [
-            'name' => 'ajaxray',
-            'email' => 'user2@ajaxray.com',
+            'name' => 'pablo',
+            'email' => 'user2@pablo.com',
             'password' => '222222',
         ])->assertFailed()
             ->expectsOutputToContain('name has already been taken.');
@@ -56,13 +56,13 @@ class CreateUserTest extends TestCase
     {
         $this->artisan('app:create-user', [
             'name' => 'user1',
-            'email' => 'user@ajaxray.com',
+            'email' => 'user@pablo.com',
             'password' => '111111',
         ])->assertSuccessful();
 
         $this->artisan('app:create-user', [
             'name' => 'user2',
-            'email' => 'user@ajaxray.com',
+            'email' => 'user@pablo.com',
             'password' => '222222',
         ])->assertFailed()
             ->expectsOutputToContain('email has already been taken.');
@@ -79,7 +79,7 @@ class CreateUserTest extends TestCase
 
             $this->artisan('app:create-user', [
                 'name' => 'user1',
-                'email' => 'user@ajaxray.com',
+                'email' => 'user@pablo.com',
                 'password' => '111111',
             ])->assertSuccessful();
 
@@ -93,7 +93,7 @@ class CreateUserTest extends TestCase
 
         $this->artisan('app:create-user', [
             'name' => 'user1',
-            'email' => 'user@ajaxray.com',
+            'email' => 'user@pablo.com',
             'password' => '111111',
             '--unverified' => true
         ])->assertSuccessful();
